@@ -1,5 +1,3 @@
-import StoryItem from "./StoryItem"
-
 const StoryList = ({articles}) => {
 
     return (

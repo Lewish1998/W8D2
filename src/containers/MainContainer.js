@@ -2,7 +2,7 @@
 // Main url = https://hacker-news.firebaseio.com/v0/{storyId}.json
 
 import { useEffect, useState } from "react"
-import StoryList from "../components/StoryList"
+import StoryList from "../components/Articles"
 
 
 const MainContainer = () => {
@@ -14,27 +14,26 @@ const MainContainer = () => {
       fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
       .then(r => r.json())
       .then(data => setIds(data))
-
     }, [])
 
-
-    const articlePromises = ids.slice(0, 20).map((id) => {
+    const articlePromises = ids.slice(0, 5).map((id) => {
       return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
       .then(r => r.json())
-      .then(data => setArticles(data))
     })
     Promise.all(articlePromises)
     .then((data) => {
       setArticles(data)
     })
 
-
-    console.log(articles)
+ // articles[0]['by']
 
     return(
         <div>
             <h1>Main Container</h1>
-            {/* <StoryList articles={articles}/> */}
+            {ids[0]}
+            <br></br>
+            {/* {articles[0]['title']} */}
+
         </div>
     )
 }
